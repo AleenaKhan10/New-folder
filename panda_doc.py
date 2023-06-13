@@ -11,7 +11,6 @@ s = pd.Series([1,2,3,4,np.nan,5,6])
 # Creating the Dataframes
 dates = pd.date_range(start='20230601', periods=9)
 # print(dates)
-
 df = pd.DataFrame(data = np.random.randn(9, 5), index=dates, columns=list("ABCDE"))
 # print(df)
 
@@ -46,4 +45,19 @@ df.describe()
 df.sort_index(axis=0, ascending=False)
 df.sort_values("B")
 
+# ______________Selection______________
 
+'''we can select the data by using the following methods:
+    1- Selecting via [] (__getitem__)
+    2- Selection by label (.loc(), .at())
+    3- Selection by position (.iloc(), .iat())
+    4- Boolean indexing'''
+    
+(df.loc[:'20230604' , ['A','B']])  #for fast access to a scalar we can use df.at()
+(df.iloc[:4 , 1:3])  #for fast access to a scalar we can use df.iat()
+(df[df['A'] < 0])
+
+# we can also use the isin() method for filtering
+df2 = df.copy()
+df2['F'] = ['one', 'one', 'two', 'two', 'one', 'three', 'one', 'two', 'three']
+(df2[df2['F'].isin(['one', 'three'])])
