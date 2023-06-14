@@ -61,3 +61,26 @@ df.sort_values("B")
 df2 = df.copy()
 df2['F'] = ['one', 'one', 'two', 'two', 'one', 'three', 'one', 'two', 'three']
 (df2[df2['F'].isin(['one', 'three'])])
+
+# we can also change the values by selecting the data with above methods
+df.iloc[:1, :1] = 0
+df.loc[:'20230601', ['B']] = 0
+(df)
+
+# ______________Handling missing data______________
+'''we can hadle the missing data by the following methods:
+    1- dropna()   => drops all the rows with missing values
+    2- fillna()   => fill all the missing values
+    3- isna()     => gets true where data is nan '''
+ 
+# first adding new column to the Dataframe object
+df3 = df.reindex(index=dates[:4], columns=list(df.columns) + ['F'])
+df3.loc[dates[0]:dates[1] , 'F'] = 1
+print(df3)
+
+print(df3.dropna())
+print(df3.fillna(value = 5))
+print(df3.isna())
+
+
+
