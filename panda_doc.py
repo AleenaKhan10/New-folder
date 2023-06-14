@@ -76,11 +76,23 @@ df.loc[:'20230601', ['B']] = 0
 # first adding new column to the Dataframe object
 df3 = df.reindex(index=dates[:4], columns=list(df.columns) + ['F'])
 df3.loc[dates[0]:dates[1] , 'F'] = 1
-print(df3)
+(df3)
 
-print(df3.dropna())
-print(df3.fillna(value = 5))
-print(df3.isna())
+(df3.dropna())
+(df3.fillna(value = 5))
+(df3.isna())
 
 
+# ______________Operations______________
+'''we can also apply some functions like .sub() that nan all the values in a row if there is one nan value or we can 
+find the mean() by give the axis. We can also use the apply() method to apply some user build funtions.'''
 
+
+# ______________Merge______________
+'''we can merge two series or dataframes by using concat() and merge() methods'''
+
+left = pd.DataFrame({"key":["foo","bar"], "lvalue":[1,2]})
+right = pd.DataFrame({"key":["foo","bar"], "rvalue":[3,4]})
+
+merged = pd.merge(left, right, on="key")
+print(merged)
