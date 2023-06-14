@@ -58,9 +58,9 @@ df.sort_values("B")
 (df[df['A'] < 0])
 
 # we can also use the isin() method for filtering
-df2 = df.copy()
-df2['F'] = ['one', 'one', 'two', 'two', 'one', 'three', 'one', 'two', 'three']
-(df2[df2['F'].isin(['one', 'three'])])
+df3 = df.copy()
+df3['F'] = ['one', 'one', 'two', 'two', 'one', 'three', 'one', 'two', 'three']
+(df3[df3['F'].isin(['one', 'three'])])
 
 # we can also change the values by selecting the data with above methods
 df.iloc[:1, :1] = 0
@@ -74,13 +74,13 @@ df.loc[:'20230601', ['B']] = 0
     3- isna()     => gets true where data is nan '''
  
 # first adding new column to the Dataframe object
-df3 = df.reindex(index=dates[:4], columns=list(df.columns) + ['F'])
-df3.loc[dates[0]:dates[1] , 'F'] = 1
-(df3)
+df4 = df.reindex(index=dates[:4], columns=list(df.columns) + ['F'])
+df4.loc[dates[0]:dates[1] , 'F'] = 1
+(df4)
 
-(df3.dropna())
-(df3.fillna(value = 5))
-(df3.isna())
+(df4.dropna())
+(df4.fillna(value = 5))
+(df4.isna())
 
 
 # ______________Operations______________
@@ -95,4 +95,25 @@ left = pd.DataFrame({"key":["foo","bar"], "lvalue":[1,2]})
 right = pd.DataFrame({"key":["foo","bar"], "rvalue":[3,4]})
 
 merged = pd.merge(left, right, on="key")
-print(merged)
+(merged)
+
+
+# ______________Grouping______________
+df = pd.DataFrame(
+    {
+        "A": ["foo", "bar", "foo", "bar", "foo", "bar", "foo", "foo"],
+        "B": ["one", "one", "two", "three", "two", "two", "one", "three"],
+        "C": np.random.randn(8),
+        "D": np.random.randn(8),
+    }
+)
+(df.groupby(['A','B'])[['D','C']].sum())
+
+# ______________Rehsaping______________
+'''we can reshape the object by using stack() or pivot_table() methods'''
+
+df3['G'] = ['faa', 'boo' ,'faa', 'boo' ,'faa', 'boo' ,'faa', 'boo' ,'faa']
+(df3)
+
+print(df3.stack()) #we can also unstack any column by using unstack() method
+print(df3.pivot_table(values=['A'], index='G', columns='F'))
