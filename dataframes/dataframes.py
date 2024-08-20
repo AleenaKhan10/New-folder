@@ -257,3 +257,18 @@ def combine_two_series_in_dataframe(df: pd.DataFrame):
 # combine_two_series_in_dataframe(df)
 
 
+def convert_datatype_of_colunm(df: pd.DataFrame):
+    s = pd.Series(['3/11/2000', '3/12/2000', '3/13/2000'])
+    r = pd.to_datetime(pd.Series(s))
+    df = pd.DataFrame(r)
+    print(df)
+    
+# convert_datatype_of_colunm(df)
+
+
+
+def group_by_first_column_and_get_second_column_in_list(df: pd.DataFrame):
+    df = pd.DataFrame( {'col1':['C1','C1','C2','C2','C2','C3','C2'], 'col2':[1,2,3,3,4,6,5]})
+    print(df.groupby('col1')['col2'].apply(list))
+    
+# group_by_first_column_and_get_second_column_in_list(df)
