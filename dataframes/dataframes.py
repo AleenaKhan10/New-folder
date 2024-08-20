@@ -177,3 +177,83 @@ def update_column_values(df : pd.DataFrame):
     print(df)
     
 # update_column_values(df)
+
+
+def select_rows_based_on_values(df: pd.DataFrame):
+    print(df.loc[df['score'] > 9])
+    
+# select_rows_based_on_values(df)
+
+
+def change_order_of_columns(df: pd.DataFrame):
+    print(df)
+    df = df[['score', 'qualify', 'name', 'attempts']]
+    print(df)
+    
+# change_order_of_columns(df)
+
+
+def add_row_to_dataframe(df: pd.DataFrame):
+    df.loc['k'] = ['albert', 20, 'no',  10]
+    print(df)
+    
+# add_row_to_dataframe(df)
+
+
+def dataframe_to_csv(df: pd.DataFrame):
+    df.to_csv('csv_file.csv', sep='\t', index=False)
+    dfc = pd.read_csv('csv_file.csv')
+    print(dfc)
+    
+# dataframe_to_csv(df)
+    
+def count_city_wise_number_of_people(df: pd.DataFrame):
+    df = pd.DataFrame({'name': ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin', 'Jonas'],
+    'city': ['California', 'Los Angeles', 'California', 'California', 'California', 'Los Angeles', 'Los Angeles', 'Georgia', 'Georgia', 'Los Angeles']})
+    print(df)
+    df1 = df.groupby(['city']).size().reset_index(name='number of people')
+    print(df1)
+    
+# count_city_wise_number_of_people(df)
+
+
+def replace_nan_to_zero(df: pd.DataFrame):
+    print(df)
+    df = df.fillna(0)
+    print(df)
+    
+# replace_nan_to_zero(df)
+
+
+def replace_nan_to_zero(df: pd.DataFrame):
+    print(df)
+    df.reset_index(level=0, inplace=True)
+    print(df)
+    df = df.to_string(index=False)
+    print(df)
+    
+# replace_nan_to_zero(df)
+
+
+def update_specific_value(df: pd.DataFrame):
+    df.iloc[8, 1] = 10.10
+    print(df)
+    
+# update_specific_value(df)
+
+
+def count_null_values(df: pd.DataFrame):
+    print(df.isnull().values.sum())
+    
+# count_null_values(df)
+
+
+def combine_two_series_in_dataframe(df: pd.DataFrame):
+    s1 = pd.Series(['100', '200', 'python', '300.12', '400'])
+    s2 = pd.Series(['10', '20', 'php', '30.12', '40'])
+    
+    print(pd.concat([s1, s2], axis=1))
+    
+# combine_two_series_in_dataframe(df)
+
+
