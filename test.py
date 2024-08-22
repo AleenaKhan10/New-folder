@@ -68,18 +68,40 @@ def create_multi_index():
 
 # 7. Group data by multiple columns and calculate aggregate statistics.
 # Data: A DataFrame with multiple columns.
-# df = pd.DataFrame({'A': ['foo', 'bar', 'foo', 'bar', 'foo', 'bar', 'foo', 'foo'],
-#                    'B': ['one', 'one', 'two', 'two', 'one', 'one', 'two', 'two'],
-#                    'C': np.random.rand(8),
-#                    'D': np.random.rand(8)})
+def group_by_and_aggregation():
+    df = pd.DataFrame({'A': ['foo', 'bar', 'foo', 'bar', 'foo', 'bar', 'foo', 'foo'],
+                    'B': ['one', 'one', 'two', 'two', 'one', 'one', 'two', 'two'],
+                    'C': np.random.rand(8),
+                    'D': np.random.rand(8)})
+    
+    aggregated = df.groupby(['A','B']).aggregate({'C':'mean', 'D':'count'})
+
+    print(df)
+    print(aggregated)
+    
+# group_by_and_aggregation()
+
 
 # 8. Filter rows based on a condition applied to multiple columns.
 # Data: A DataFrame with multiple columns.
-# df = pd.DataFrame({'A': np.random.rand(10), 'B': np.random.rand(10)})
+def filter_row_based_on_conditions():
+    df = pd.DataFrame({'A': np.random.rand(10), 'B': np.random.rand(10)})
+    
+    filtered = df[(df['A'] > 0.5) & (df['B'] < 0.5)]
+    
+    print(df)
+    print(filtered)
+    
+# filter_row_based_on_conditions()
 
 # 9. Create a rolling window calculation.
 # Data: A time series DataFrame.
-# df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+def rolling_window_calculation():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df)
+    
+rolling_window_calculation()
+    
 
 # 10. Resample time series data to a different frequency.
 # Data: A time series DataFrame.
@@ -307,5 +329,323 @@ def create_multi_index():
 # Point = namedtuple('Point', ['x', 'y'])
 # data = [[1, 'a'], [2, None, [3, 4], {'x': 5}, (6, 7), Point(8, 9), {10, 11}, frozenset([12, 13]), np.array([14, 15]), pd.DataFrame(np.random.rand(2, 2)), pd.Series([16, 17])], [18]]
 
+# 62. Calculate the mean of each column in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_mean():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    print(df.mean())
 
+# 63. Calculate the median of each column in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_median():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    print(df.median())
 
+# 64. Calculate the mode of each column in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_mode():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    print(df.mode())
+
+# 65. Calculate the variance of each column in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_variance():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    print(df.var())
+
+# 66. Calculate the standard deviation of each column in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_std():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    print(df.std())
+
+# 67. Calculate the skewness of each column in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_skewness():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    print(df.skew())
+
+# 68. Calculate the kurtosis of each column in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_kurtosis():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    print(df.kurt())
+
+# 69. Calculate the minimum value of each column in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_min():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    print(df.min())
+
+# 70. Calculate the maximum value of each column in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_max():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    print(df.max())
+
+# 71. Calculate the range of each column in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_range():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    print(df.max() - df.min())
+
+# 72. Calculate the interquartile range (IQR) of each column in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_iqr():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    Q1 = df.quantile(0.25)
+    Q3 = df.quantile(0.75)
+    IQR = Q3 - Q1
+    print(IQR)
+
+# 73. Calculate the 10th percentile of each column in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_10th_percentile():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    print(df.quantile(0.1))
+
+# 74. Calculate the 90th percentile of each column in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_90th_percentile():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    print(df.quantile(0.9))
+
+# 75. Calculate the correlation between two columns in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_correlation():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    print(df['A'].corr(df['B']))
+
+# 76. Calculate the covariance between two columns in a DataFrame.
+# Data: A DataFrame with numerical columns.
+def calculate_covariance():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    print(df['A'].cov(df['B']))
+
+# 77. Calculate the rolling mean of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_rolling_mean():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].rolling(window=5).mean())
+
+# 78. Calculate the rolling median of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_rolling_median():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].rolling(window=5).median())
+
+# 79. Calculate the rolling variance of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_rolling_variance():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].rolling(window=5).var())
+
+# 80. Calculate the rolling standard deviation of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_rolling_std():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].rolling(window=5).std())
+
+# 81. Calculate the rolling skewness of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_rolling_skewness():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].rolling(window=5).skew())
+
+# 82. Calculate the rolling kurtosis of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_rolling_kurtosis():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].rolling(window=5).kurt())
+
+# 83. Calculate the rolling minimum of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_rolling_min():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].rolling(window=5).min())
+
+# 84. Calculate the rolling maximum of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_rolling_max():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].rolling(window=5).max())
+
+# 85. Calculate the rolling range of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_rolling_range():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].rolling(window=5).apply(lambda x: x.max() - x.min()))
+
+# 86. Calculate the rolling interquartile range (IQR) of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_rolling_iqr():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].rolling(window=5).apply(lambda x: np.percentile(x, 75) - np.percentile(x, 25)))
+
+# 87. Calculate the rolling 10th percentile of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_rolling_10th_percentile():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].rolling(window=5).apply(lambda x: np.percentile(x, 10)))
+
+# 88. Calculate the rolling 90th percentile of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_rolling_90th_percentile():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].rolling(window=5).apply(lambda x: np.percentile(x, 90)))
+
+# 89. Calculate the rolling correlation between two columns in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_rolling_correlation():
+    df = pd.DataFrame({'A': np.random.rand(100), 'B': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].rolling(window=5).corr(df['B']))
+
+# 90. Calculate the rolling covariance between two columns in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_rolling_covariance():
+    df = pd.DataFrame({'A': np.random.rand(100), 'B': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].rolling(window=5).cov(df['B']))
+
+# 91. Calculate the expanding mean of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_expanding_mean():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].expanding().mean())
+
+# 92. Calculate the expanding median of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_expanding_median():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].expanding().median())
+
+# 93. Calculate the expanding variance of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_expanding_variance():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].expanding().var())
+
+# 94. Calculate the expanding standard deviation of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_expanding_std():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].expanding().std())
+
+# 95. Calculate the expanding skewness of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_expanding_skewness():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].expanding().skew())
+
+# 96. Calculate the expanding kurtosis of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_expanding_kurtosis():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].expanding().kurt())
+
+# 97. Calculate the expanding minimum of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_expanding_min():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].expanding().min())
+
+# 98. Calculate the expanding maximum of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_expanding_max():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].expanding().max())
+
+# 99. Calculate the expanding range of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_expanding_range():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].expanding().apply(lambda x: x.max() - x.min()))
+
+# 100. Calculate the expanding interquartile range (IQR) of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_expanding_iqr():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].expanding().apply(lambda x: np.percentile(x, 75) - np.percentile(x, 25)))
+
+# 101. Calculate the expanding 10th percentile of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_expanding_10th_percentile():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].expanding().apply(lambda x: np.percentile(x, 10)))
+
+# 102. Calculate the expanding 90th percentile of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_expanding_90th_percentile():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].expanding().apply(lambda x: np.percentile(x, 90)))
+
+# 103. Calculate the expanding correlation between two columns in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_expanding_correlation():
+    df = pd.DataFrame({'A': np.random.rand(100), 'B': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].expanding().corr(df['B']))
+
+# 104. Calculate the expanding covariance between two columns in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_expanding_covariance():
+    df = pd.DataFrame({'A': np.random.rand(100), 'B': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].expanding().cov(df['B']))
+
+# 105. Calculate the exponentially weighted mean of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_ewm_mean():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].ewm(span=5).mean())
+
+# 106. Calculate the exponentially weighted variance of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_ewm_variance():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].ewm(span=5).var())
+
+# 107. Calculate the exponentially weighted standard deviation of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_ewm_std():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].ewm(span=5).std())
+
+# 108. Calculate the exponentially weighted correlation between two columns in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_ewm_correlation():
+    df = pd.DataFrame({'A': np.random.rand(100), 'B': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].ewm(span=5).corr(df['B']))
+
+# 109. Calculate the exponentially weighted covariance between two columns in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_ewm_covariance():
+    df = pd.DataFrame({'A': np.random.rand(100), 'B': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].ewm(span=5).cov(df['B']))
+
+# 110. Calculate the exponentially weighted skewness of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_ewm_skewness():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].ewm(span=5).apply(lambda x: x.skew()))
+
+# 111. Calculate the exponentially weighted kurtosis of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_ewm_kurtosis():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].ewm(span=5).apply(lambda x: x.kurt()))
+
+# 112. Calculate the exponentially weighted minimum of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_ewm_min():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].ewm(span=5).apply(lambda x: x.min()))
+
+# 113. Calculate the exponentially weighted maximum of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_ewm_max():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].ewm(span=5).apply(lambda x: x.max()))
+
+# 114. Calculate the exponentially weighted range of a column in a DataFrame.
+# Data: A time series DataFrame.
+def calculate_ewm_range():
+    df = pd.DataFrame({'A': np.random.rand(100)}, index=pd.date_range('20210101', periods=100))
+    print(df['A'].ewm(span=5).apply(lambda x: x.max() - x.min()))
