@@ -1,32 +1,70 @@
+import pandas as pd
+import numpy as np
+
 # 1. Calculate the correlation matrix for a given DataFrame.
 # Data: A DataFrame with numerical columns.
-# df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+def calculate_correlation_matrix():
+   df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+   print(df.corr())
+      
 
 # 2. Normalize the data in a DataFrame.
 # Data: A DataFrame with numerical columns.
-# df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
-
+def normalize_data():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    
+    # Using the min max feature scaling
+    for column in df.columns:
+        df[column] = (df[column]-df[column].min()) / (df[column].max()-df[column].min())
+        
+    # using the maximum absolute scaling
+    for column in df.columns:
+        df[column] = df[column] / df[column].abs().max()
+        
+    # using z score method
+    for column in df.columns:
+        df[column] = (df[column]-df[column].mean()) / (df[column].std())
+        
+        
 # 3. Handle missing data by filling with the mean of the column.
 # Data: A DataFrame with some missing values.
-# df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
-# df.loc[::10, 'A'] = np.nan
+def replace_none_value_with_mean():
+    df = pd.DataFrame(np.random.rand(100, 10), columns=list('ABCDEFGHIJ'))
+    df.loc[::10, 'A'] = np.nan
+    df.fillna(df.mean(), inplace=True)
+
 
 # 4. Merge two DataFrames on a common column.
 # Data: Two DataFrames with at least one common column.
-# df1 = pd.DataFrame({'key': ['A', 'B', 'C', 'D'], 'value': np.random.rand(4)})
-# df2 = pd.DataFrame({'key': ['B', 'D', 'E', 'F'], 'value': np.random.rand(4)})
+def merge_dataframes():
+    df1 = pd.DataFrame({'key': ['A', 'B', 'C', 'D'], 'value': np.random.rand(4)})
+    df2 = pd.DataFrame({'key': ['B', 'D', 'E', 'F'], 'value': np.random.rand(4)})
+    df = pd.merge(df1, df2, on='key', how='outer', suffixes=['_df1', '_df2'])
+    print(df)
+    
+# merge_dataframes()
+
 
 # 5. Pivot a DataFrame to create a summary table.
 # Data: A DataFrame with multiple columns.
-# df = pd.DataFrame({'A': ['foo', 'foo', 'foo', 'bar', 'bar', 'bar'],
-#                    'B': ['one', 'one', 'two', 'two', 'one', 'one'],
-#                    'C': np.random.rand(6)})
+def pivot_dataframe():
+    df = pd.DataFrame({'A': ['foo', 'foo', 'foo', 'bar', 'bar', 'bar'],
+                    'B': ['one', 'one', 'two', 'two', 'one', 'one'],
+                    'C': np.random.rand(6)})
+    df = df.pivot_table(df, index=['A'])
+    print(df)
+    
 
 # 6. Create a multi-index DataFrame.
 # Data: A DataFrame with hierarchical indexing.
-# arrays = [np.array(['bar', 'bar', 'baz', 'baz', 'foo', 'foo', 'qux', 'qux']),
-#           np.array(['one', 'two', 'one', 'two', 'one', 'two', 'one', 'two'])]
-# df = pd.DataFrame(np.random.rand(8, 4), index=arrays, columns=list('ABCD'))
+def create_multi_index():
+    arrays = [np.array(['bar', 'bar', 'baz', 'baz', 'foo', 'foo', 'qux', 'qux']),
+            np.array(['one', 'two', 'one', 'two', 'one', 'two', 'one', 'two'])]
+    df = pd.DataFrame(np.random.rand(8, 4), index=arrays, columns=list('ABCD'))
+    
+    print(df)
+    
+# create_multi_index()
 
 # 7. Group data by multiple columns and calculate aggregate statistics.
 # Data: A DataFrame with multiple columns.
