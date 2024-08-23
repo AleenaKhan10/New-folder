@@ -33,4 +33,14 @@ Mean Square Error (MSE) - Measures difference between predicted and actual repon
 
 
 ### CHAPTER 3 ###
+
+Linear Regression
+
+y = m(x)
+
+chart ->
+independent param always on x axis
+dependent param always on y axis
+
+
 """
